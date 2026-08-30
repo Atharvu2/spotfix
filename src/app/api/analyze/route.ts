@@ -5,16 +5,8 @@ export async function POST(req: Request) {
   try {
     const { image } = await req.json();
     
-    if (!process.env.GEMINI_API_KEY) {
-      return NextResponse.json({ 
-        issue: 'API KEY MISSING', 
-        confidence: 0, 
-        description: 'Please add your GEMINI_API_KEY to .env.local to enable real AI analysis.',
-        error: true 
-      });
-    }
-
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const apiKey = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6Keg6579exU02mp1PzWibI_dGzcBd-A7dpTBVmzmjvXTQ';
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
 
     // Extract base64 data and mime type
