@@ -72,6 +72,15 @@ export default function App() {
     } else setLocationName("SYS_UNSUPPORTED");
   };
 
+  const handleConfirmLocation = () => {
+    setFlow("DUPLICATE_CHECK");
+    setTimeout(() => setFlow("DUPLICATE_FOUND"), 2000);
+  };
+
+  const handleJoinIssue = () => {
+    setFlow("ISSUE_VIEW");
+  };
+
   const pageVariants = {
     initial: { opacity: 0, filter: "blur(4px)" },
     in: { opacity: 1, filter: "blur(0px)" },
